@@ -1,1 +1,1 @@
-export const baseUrl = 'https://react-chat-node.onrender.com'
+export const baseUrl = 'https://react-chat-node.onrender.com/api/messenger'

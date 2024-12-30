@@ -39,8 +39,7 @@ watch(() => authStore.isLoggedIn, (newValue) => {
 
                                             <div class="mb-3">
                                                 <div class="float-end">
-                                                    <router-link to="/reset-password" href="auth-recoverpw.html"
-                                                        class="text-muted">Forgot
+                                                    <router-link to="/reset-password" class="text-muted">Forgot
                                                         password?</router-link>
                                                 </div>
                                                 <label for="userpassword" class="form-label">Password</label>

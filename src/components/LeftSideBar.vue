@@ -1,14 +1,20 @@
 <script setup>
 import { useFriendStore } from '@/stores/messengerStore/friendList';
-import { onMounted, ref, watchEffect } from 'vue';
+import { onMounted, ref, watch, watchEffect } from 'vue';
 
 const friendStore = useFriendStore();
-const friends = ref([]);
 
 // Fetch user data from API
 onMounted(async () => {
     await friendStore.getAllfriends();
+    // watch(() => friendStore.friends, (newFriends) => {
+    //     console.log(newFriends);
+    // })
 });
+
+
+
+
 
 // Function to generate a dummy avatar with initials
 function getDummyAvatar(friend) {

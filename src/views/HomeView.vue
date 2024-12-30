@@ -2,7 +2,8 @@
 import LeftSideBar from '@/components/LeftSideBar.vue';
 import UserChat from '@/components/UserChat.vue';
 import { useindexStore } from '@/stores/indexStore';
-import { watch } from 'vue';
+import { useFriendStore } from '@/stores/messengerStore/friendList';
+import { onMounted, watch } from 'vue';
 
 
 const indexStore = useindexStore();
@@ -101,7 +102,7 @@ const indexStore = useindexStore();
     <!-- end left sidebar-menu -->
 
     <!-- start chat-leftsidebar -->
-    <LeftSideBar :friends="friends" />
+    <LeftSideBar />
     <!-- end chat-leftsidebar -->
 
     <!-- Start User chat -->

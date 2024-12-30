@@ -36,7 +36,7 @@ export const useAuthStore = defineStore('authStore', {
             formdata.append('email', this.email);
             formdata.append('password', this.password);
 
-            api.post('/api/messenger/user-login', formdata)
+            api.post('/user-login', formdata)
                 .then(response => {
                     toast.success(response.data.message);
                     setTimeout(() => {
@@ -44,11 +44,9 @@ export const useAuthStore = defineStore('authStore', {
                     }, 2000);
                     const token = response.data.token;
                     // setting the cookie 
-                    document.cookie = `auth_token=${token}; path=/; max-age=3600`;
-                    // console.log(response.data.user);
+                    document.cookie = `auth_token=${token}; path=/; max-age=3600; SameSite=None; Secure`;
                     localStorage.setItem('userInfo', response.data.user);
 
-                    //redirecting to the dashboard
                 })
                 .catch((error) => {
                     if (error.response) {
