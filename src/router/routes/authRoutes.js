@@ -1,5 +1,6 @@
-import LoginView from "@/views/LoginView.vue";
-import RegisterView from "@/views/RegisterView.vue";
+import LoginView from "@/views/Auth/LoginView.vue";
+import RegisterView from "@/views/Auth/RegisterView.vue";
+import ResetPasswordView from "@/views/Auth/ResetPasswordView.vue";
 
 export default [
     {
@@ -12,4 +13,9 @@ export default [
         name: 'register',
         component: RegisterView,
     },
+    {
+        path: '/reset-password',
+        name: 'reset-password',
+        component: ResetPasswordView,
+    }
 ]

@@ -8,6 +8,7 @@ import { watch } from 'vue';
 const indexStore = useindexStore();
 
 
+
 </script>
 
 <template>
