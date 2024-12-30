@@ -9,8 +9,6 @@ export default [
         component: LoginView,
         meta: { requireAuth: true }
 
-
-
     },
     {
         path: '/register',
