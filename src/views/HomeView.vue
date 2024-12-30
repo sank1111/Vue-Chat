@@ -1,6 +1,12 @@
 <script setup>
 import LeftSideBar from '@/components/LeftSideBar.vue';
 import UserChat from '@/components/UserChat.vue';
+import { useindexStore } from '@/stores/indexStore';
+import { watch } from 'vue';
+
+
+const indexStore = useindexStore();
+
 
 </script>
 

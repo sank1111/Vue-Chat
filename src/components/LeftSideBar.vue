@@ -1,5 +1,5 @@
 <script setup>
-import { useFriendStore } from '@/stores/friendList';
+import { useFriendStore } from '@/stores/messengerStore/friendList';
 import { onMounted, ref, watchEffect } from 'vue';
 
 const friendStore = useFriendStore();

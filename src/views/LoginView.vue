@@ -1,7 +1,17 @@
 <script setup>
 import { useAuthStore } from '@/stores/authStore/authStore';
+import { watch } from 'vue';
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
 
 const authStore = useAuthStore();
+
+watch(() => authStore.isLoggedIn, (newValue) => {
+    if (newValue === true) {
+        router.push('/');
+    }
+}, { immediate: true });
 
 </script>
 <template>
