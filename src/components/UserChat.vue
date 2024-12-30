@@ -14,6 +14,8 @@ function selectEmoji(emoji) {
     selectedEmoji.value += emoji;//we will store all emojies here.
 }
 
+
+
 </script>
 <template>
     <div class="user-chat w-100 overflow-hidden">
@@ -289,7 +291,7 @@ function selectEmoji(emoji) {
                                                     <span class="dot"></span>
                                                     <span class="dot"></span>
                                                     <span class="dot"></span>
-                                                </span> 
+                                                </span>
                                             </span>
                                         </div>
                                     </div>

@@ -1,6 +1,34 @@
+<script setup>
+import { useFriendStore } from '@/stores/friendList';
+import { onMounted, ref, watchEffect } from 'vue';
+
+const friendStore = useFriendStore();
+const friends = ref([]);
+
+// Fetch user data from API
+onMounted(async () => {
+    await friendStore.getAllfriends();
+});
+
+// Function to generate a dummy avatar with initials
+function getDummyAvatar(friend) {
+    const initials = friend.firstName.charAt(0) + friend.lastName.charAt(0);  // Create initials from first and last name
+    return `https://ui-avatars.com/api/?name=${initials}&background=random&color=fff`;
+}
+
+function friendInfo(friend) {
+
+}
+
+
+
+
+</script>
+
+
+
 <template>
     <div class="chat-leftsidebar">
-
         <div class="tab-content">
             <!-- Start Profile tab-pane -->
             <div class="tab-pane" id="pills-user" role="tabpanel" aria-labelledby="pills-user-tab">
@@ -336,11 +364,26 @@
 
                     <div class="chat-room-list" data-simplebar>
                         <!-- Start chat-message-list -->
-                        <h5 class="mb-3 px-4 mt-4 fs-11 text-muted text-uppercase">Favourites</h5>
-
-                        <div class="chat-message-list">
-                            <ul class="list-unstyled chat-list chat-user-list" id="favourite-users">
-                            </ul>
+                        <h5 class="mb-3 px-4 mt-4 fs-11 text-muted text-uppercase">Friends</h5>
+                        <div class="chat-container">
+                            <div v-for="friend in friendStore.friendList" :key="friend.id"
+                                @click="friendStore.getFriendInfo(friend)" class="chat-message-item">
+                                <div class="avatar">
+                                    <!-- If friend has avatarUrl, show it, otherwise show a dummy avatar -->
+                                    <img :src="friend.avatarUrl || getDummyAvatar(friend)" alt="Avatar" />
+                                </div>
+                                <div class="message-content">
+                                    <div class="friend-name">
+                                        {{ friend.firstName }} {{ friend.lastName }}
+                                    </div>
+                                    <div class="friend-status">
+                                        <span
+                                            :class="{ 'online': friend.status === 'online', 'offline': friend.status !== 'online' }">
+                                            {{ friend.status === 'online' ? 'Online' : 'Offline' }}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="d-flex align-items-center px-4 mt-5 mb-2">
@@ -1256,5 +1299,64 @@
     </div>
 </template>
 
-<script setup>
-</script>
+<style scoped>
+.chat-container {
+    padding: 20px;
+    max-height: 400px;
+    overflow-y: auto;
+    background-color: #f9f9f9;
+}
+
+.chat-message-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color: white;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 12px;
+}
+
+.avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.message-content {
+    flex-grow: 1;
+}
+
+.friend-name {
+    font-weight: bold;
+    font-size: 16px;
+    color: #333;
+}
+
+.friend-status {
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+.friend-status.online {
+    color: green;
+    font-weight: bold;
+}
+
+.friend-status.offline {
+    color: gray;
+}
+
+.chat-message-item:hover {
+    background-color: #e6f7ff;
+    cursor: pointer;
+}
+</style>

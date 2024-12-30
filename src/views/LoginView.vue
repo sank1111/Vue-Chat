@@ -16,7 +16,7 @@
                                             <h3>Welcome Back !</h3>
                                             <p class="text-muted">Sign in to continue to Vhato.</p>
                                         </div>
-                                        <form action="https://themesdesign.in/vhato/layouts/index.html">
+                                        <form @submit.prevent="login">
                                             <div class="mb-3">
                                                 <label for="username" class="form-label">Username</label>
                                                 <input type="text" class="form-control" id="username"

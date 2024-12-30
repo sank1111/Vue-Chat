@@ -1,5 +1,8 @@
 <script setup>
+import { useAuthStore } from '@/stores/authStore/authStore';
 
+const authStore = useAuthStore();
+// const friendStore= 
 </script>
 <template>
     <div class="auth-bg">
@@ -17,20 +20,19 @@
                                             <h3>Register Account</h3>
                                             <p class="text-muted">Get your free Vhato account now.</p>
                                         </div>
-                                        <form class="needs-validation" novalidate
-                                            action="https://themesdesign.in/vhato/layouts/index.html">
+                                        <form class="needs-validation" @submit.prevent="authStore.register">
                                             <div class="mb-3">
                                                 <label for="useremail" class="form-label">Email</label>
-                                                <input type="email" class="form-control" id="useremail"
-                                                    placeholder="Enter email" required>
+                                                <input type="email" class="form-control" name="email" id="useremail"
+                                                    v-model="authStore.email" placeholder="Enter email" required>
                                                 <div class="invalid-feedback">
                                                     Please Enter Email
                                                 </div>
                                             </div>
                                             <div class="mb-3">
                                                 <label for="username" class="form-label">Username</label>
-                                                <input type="text" class="form-control" id="username"
-                                                    placeholder="Enter username" required>
+                                                <input type="text" class="form-control" id="username" name="username"
+                                                    v-model="authStore.username" placeholder="Enter username" required>
                                                 <div class="invalid-feedback">
                                                     Please Enter Username
                                                 </div>
@@ -39,6 +41,7 @@
                                             <div class="mb-3">
                                                 <label for="userpassword" class="form-label">Password</label>
                                                 <input type="password" class="form-control" id="userpassword"
+                                                    name="password" v-model="authStore.password"
                                                     placeholder="Enter password" required>
                                                 <div class="invalid-feedback">
                                                     Please Enter Password

@@ -1,5 +1,5 @@
 <script setup>
-import Left_SideBar from '@/components/LeftSideBar.vue';
+import LeftSideBar from '@/components/LeftSideBar.vue';
 import UserChat from '@/components/UserChat.vue';
 
 </script>
@@ -12,7 +12,7 @@ import UserChat from '@/components/UserChat.vue';
     <div class="side-menu flex-lg-column">
       <!-- LOGO -->
       <div class="navbar-brand-box">
-        <a href="index.html" class="logo logo-dark">
+        <router-link to="/" class="logo logo-dark">
           <span class="logo-sm">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="30" height="30">
               <path fill="none" d="M0 0h24v24H0z" />
@@ -20,7 +20,7 @@ import UserChat from '@/components/UserChat.vue';
                 d="M7.291 20.824L2 22l1.176-5.291A9.956 9.956 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10a9.956 9.956 0 0 1-4.709-1.176zm.29-2.113l.653.35A7.955 7.955 0 0 0 12 20a8 8 0 1 0-8-8c0 1.334.325 2.618.94 3.766l.349.653-.655 2.947 2.947-.655zM7 12h2a3 3 0 0 0 6 0h2a5 5 0 0 1-10 0z" />
             </svg>
           </span>
-        </a>
+        </router-link>
 
         <a href="index.html" class="logo logo-light">
           <span class="logo-sm">
@@ -94,7 +94,7 @@ import UserChat from '@/components/UserChat.vue';
     <!-- end left sidebar-menu -->
 
     <!-- start chat-leftsidebar -->
-    <Left_SideBar />
+    <LeftSideBar :friends="friends" />
     <!-- end chat-leftsidebar -->
 
     <!-- Start User chat -->
@@ -216,9 +216,11 @@ import UserChat from '@/components/UserChat.vue';
             </div>
 
             <img src="/assets/images/users/avatar-2.jpg" alt="" class="videocallModal-bg">
+
             <div>
               <img src="/assets/images/users/avatar-1.jpg" alt="" class="avatar-lg video-call-profile rounded">
             </div>
+
             <div class="position-absolute start-0 end-0 bottom-0">
               <div class="text-center">
                 <button type="button" class="btn btn-danger avatar-md call-close-btn rounded-circle"
