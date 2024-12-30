@@ -1,4 +1,5 @@
 import { api } from "@/utility/api";
+import axios from "axios";
 import { defineStore } from "pinia";
 
 export const useAuthStore = defineStore('authStore', {
@@ -19,7 +20,6 @@ export const useAuthStore = defineStore('authStore', {
     actions: {
         //register Function
         async register() {
-            alert('register Invoked');
             const formdata = new FormData();
             formdata.append('firstName', this.username);
             formdata.append('lastName', 'Gibbs');
@@ -31,7 +31,15 @@ export const useAuthStore = defineStore('authStore', {
 
         },
         login() {
+            const formdata = new FormData();
+            formdata.append('email', this.email);
+            formdata.append('password', this.password);
+            // axios.post('https://react-chat-node.onrender.com/api/messenger/user-login', formdata).
+            //     then(response => console.log(response.data))
 
+            api.post('/api/messenger/user-login', formdata).then(response => {
+                console.log(response.data)
+            })
         },
     }
 })

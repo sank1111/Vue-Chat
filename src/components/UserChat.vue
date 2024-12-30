@@ -1,9 +1,22 @@
 <script setup>
-import { ref } from 'vue';
+import { useFriendStore } from '@/stores/friendList';
+import { ref, watch } from 'vue';
+
+const friendlistStore = useFriendStore();
+const friendDetails = ref({});
+
+watch(() => friendlistStore.friendDetails, (newValue) => {
+    friendDetails.value = newValue;
+}, { immediate: true }); ///it will keep watching the changes in friendDetails and when it got the value then console here 
+// click hunu jel wait garne jaba click vayo value change vayo watch le samatyo ani console vayo.(dependency change ko lagi wait garne.)
+
+
+
 
 const emojis = ['😊', '😂', '😍', '😎', '❤️', '👍', '😢', '😜', '😉'];
 let constPicker = ref(false); //when click the button is triggered then this will be true.
 let selectedEmoji = ref('');//Emojies which is selected by user
+
 
 function toggleEmojiPicker() {
     constPicker.value = !constPicker.value;
@@ -13,7 +26,6 @@ function toggleEmojiPicker() {
 function selectEmoji(emoji) {
     selectedEmoji.value += emoji;//we will store all emojies here.
 }
-
 
 
 </script>
@@ -43,8 +55,10 @@ function selectEmoji(emoji) {
                                             </div>
                                             <div class="flex-grow-1 overflow-hidden">
                                                 <h6 class="text-truncate mb-0 fs-18"><a href="#"
-                                                        class="user-profile-show text-reset">Victoria
-                                                        Lane</a></h6>
+                                                        class="user-profile-show text-reset">{{ friendDetails.firstName
+                                                            +
+                                                            ' '
+                                                        }}{{ friendDetails.lastName }}</a></h6>
                                                 <p class="text-truncate text-muted mb-0"><small>Online</small></p>
                                             </div>
                                         </div>

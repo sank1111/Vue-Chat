@@ -1,4 +1,8 @@
 <script setup>
+import { useAuthStore } from '@/stores/authStore/authStore';
+
+const authStore = useAuthStore();
+
 </script>
 <template>
     <div class="auth-bg">
@@ -16,11 +20,11 @@
                                             <h3>Welcome Back !</h3>
                                             <p class="text-muted">Sign in to continue to Vhato.</p>
                                         </div>
-                                        <form @submit.prevent="login">
+                                        <form @submit.prevent="authStore.login">
                                             <div class="mb-3">
-                                                <label for="username" class="form-label">Username</label>
-                                                <input type="text" class="form-control" id="username"
-                                                    placeholder="Enter username">
+                                                <label for="email" class="form-label">Email</label>
+                                                <input type="text" v-model="authStore.email" class="form-control"
+                                                    id="email" name="email" placeholder="Enter Email">
                                             </div>
 
                                             <div class="mb-3">
@@ -30,7 +34,8 @@
                                                 </div>
                                                 <label for="userpassword" class="form-label">Password</label>
                                                 <div class="position-relative auth-pass-inputgroup mb-3">
-                                                    <input type="password" class="form-control pe-5"
+                                                    <input v-model="authStore.password" type="password"
+                                                        class="form-control pe-5" name="password"
                                                         placeholder="Enter Password" id="password-input">
                                                     <button
                                                         class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted"

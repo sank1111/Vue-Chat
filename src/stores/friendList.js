@@ -25,7 +25,6 @@ export const useFriendStore = defineStore('friendstore', {
         },
 
         getFriendInfo(friend) {
-            console.log('freien details',  friend);
             this.friendInfo = friend;
         }
 

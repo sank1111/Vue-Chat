@@ -16,9 +16,6 @@ function getDummyAvatar(friend) {
     return `https://ui-avatars.com/api/?name=${initials}&background=random&color=fff`;
 }
 
-function friendInfo(friend) {
-
-}
 
 
 
