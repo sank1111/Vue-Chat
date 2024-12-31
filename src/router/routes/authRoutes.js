@@ -7,18 +7,21 @@ export default [
         path: '/login',
         name: 'login',
         component: LoginView,
+        meta: { requiresAuth: false }
 
     },
     {
         path: '/register',
         name: 'register',
         component: RegisterView,
+        meta: { requiresAuth: false }
 
     },
     {
         path: '/reset-password',
         name: 'reset-password',
         component: ResetPasswordView,
+        meta: { requiresAuth: false }
 
     }
 ]
