@@ -6,7 +6,7 @@ import { toast } from "vue3-toastify";
 export const useAuthStore = defineStore('authStore', {
     state: () => {
         return {
-            isLoggedIn: false,
+            isLoggedIn: !!localStorage.getItem('userInfo'),
             user: null,
             email: '',
             username: '',

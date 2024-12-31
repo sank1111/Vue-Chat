@@ -8,16 +8,17 @@ export default [
         name: 'login',
         component: LoginView,
 
-
     },
     {
         path: '/register',
         name: 'register',
         component: RegisterView,
+
     },
     {
         path: '/reset-password',
         name: 'reset-password',
         component: ResetPasswordView,
+
     }
 ]

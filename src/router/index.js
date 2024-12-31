@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import authRoutes from './routes/authRoutes'
 import AboutView from '../views/AboutView.vue'
 import HomeView from '@/views/HomeView.vue'
-import { useindexStore } from '@/stores/indexStore'
+import { useAuthStore } from '@/stores/authStore/authStore'
 
 
 const routes = [
@@ -21,35 +21,33 @@ const router = createRouter({
 })
 
 //remember matched route ma sadei /(root) auxa auxa so root route ma meta launa vayena..
-
-// router.beforeEach((to, from, next) => {
-
-//   // if (to.path === '/' && to.query.logout === 'true') {
-//   //   console.log('Logout detected via query parameter');
-//   //   return next('/login');
-//   // }
-
-//   next();
-// });
-// router.beforeEach((to, from, next) => {
-//   const indexStore = useindexStore();
-//   if (to.path = '/' && to.query.logout == true) {
-//     return next('login');
-//   }
+router.beforeEach((to, from, next) => {
+  const authStore = useAuthStore();
+  console.log(authStore.isLoggedIn);
+  ////////////////         UNAUTHENTICATED USERS        //////////////////////
 
 
-//   // Check if route requires authentication
-//   // if (to.matched.some(record => record.meta.requireAuth)) {
-//   //   if (indexStore.authenticate === true && to.query.logout == true) {
-//   //     // return next('/');
-//   //   } else {
-//   //     return next('/');
-//   //   }
-//   // }
+  // If user is not logged in and trying to access a protected route
+  if (!authStore.isLoggedIn) {
+    if (to.name == 'login' || to.name == 'register') {  //if unauthenticated and tries to login and register, allow access
+      return next();
+    } else {
+      // If user is not logged in and trying to access a protected route, redirect to login
+      return next('/login');
+    }
+  } else {
+    ////////////////         AUTHENTICATED USERS        //////////////////////
 
-//   // Default fallback
-//   next();
-// });
+
+    // If user is logged in and trying to access login or register routes, redirect to home
+    if (to.name == 'login' || to.name == 'register') {
+      return next('/');
+    } else {
+      return next();
+    }
+  }
+});
+
 
 
 export default router
