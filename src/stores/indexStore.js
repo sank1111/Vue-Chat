@@ -4,9 +4,8 @@ export const useindexStore = defineStore('index', {
     state: () => ({
         user: localStorage.getItem('userInfo') ? localStorage.getItem('userInfo') : null,
         authenticate: !!localStorage.getItem('userInfo'),
-    }),  
-    actions: {
-
+    }),
+    getters: {
+        isAuthenticated: (state) => state.authenticate,
     }
-
 })

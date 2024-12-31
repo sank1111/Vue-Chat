@@ -1,12 +1,17 @@
 <script setup>
 import LeftSideBar from '@/components/LeftSideBar.vue';
 import UserChat from '@/components/UserChat.vue';
+import router from '@/router';
 import { useindexStore } from '@/stores/indexStore';
 import { useFriendStore } from '@/stores/messengerStore/friendList';
-import { onMounted, watch } from 'vue';
+import { watch } from 'vue';
 
 
 const indexStore = useindexStore();
+watch(() => indexStore.isAuthenticated, (newValue) => {
+  console.log(newValue);
+});
+
 
 
 

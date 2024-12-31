@@ -1,4 +1,20 @@
 <script setup>
+import { useAuthStore } from '@/stores/authStore/authStore';
+import { useindexStore } from '@/stores/indexStore';
+import { watch } from 'vue';
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+const authStore = useAuthStore();
+function logout() {
+    authStore.logout();
+    watch(() => authStore.isLoggedIn, (newValue) => {
+        if (newValue === false) { //user not authenticated, redirect to login page
+            router.push('/login');
+        }
+    }, { immediate: true });
+
+}
 </script>
 <template>
     <div class="tab-pane" id="pills-setting" role="tabpanel" aria-labelledby="pills-setting-tab">
@@ -315,7 +331,7 @@
                     </div>
 
                     <!-- Logout -->
-                    <button class="btn btn-danger rounded-pill px-4 py-2"
+                    <button class="btn btn-danger rounded-pill px-4 py-2" @click="logout()"
                         :style="{ marginTop: '4px', marginLeft: '98px' }">
                         Logout
                     </button>

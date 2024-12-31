@@ -55,6 +55,11 @@ export const useAuthStore = defineStore('authStore', {
                         toast('Error connecting to the server', { type: 'error' });
                     }
                 });
+        },
+        logout() {
+            localStorage.clear('userInfo');
+            document.cookie = "auth_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; Secure; SameSite=Lax;";
+            this.isLoggedIn = false;
         }
     }
 })

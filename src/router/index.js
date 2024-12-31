@@ -21,16 +21,35 @@ const router = createRouter({
 })
 
 //remember matched route ma sadei /(root) auxa auxa so root route ma meta launa vayena..
-router.beforeEach((to, from, next) => {
-  const indexStore = useindexStore();
-  //router lai protect gareko if route ma require auth xa vane yesma janxa.
-  if (to.matched.some(record => record.meta.requireAuth)) {
-    if (indexStore.authenticate == true) {
-      next('/');
-    }
-  }
-  next();
-});
+
+// router.beforeEach((to, from, next) => {
+
+//   // if (to.path === '/' && to.query.logout === 'true') {
+//   //   console.log('Logout detected via query parameter');
+//   //   return next('/login');
+//   // }
+
+//   next();
+// });
+// router.beforeEach((to, from, next) => {
+//   const indexStore = useindexStore();
+//   if (to.path = '/' && to.query.logout == true) {
+//     return next('login');
+//   }
+
+
+//   // Check if route requires authentication
+//   // if (to.matched.some(record => record.meta.requireAuth)) {
+//   //   if (indexStore.authenticate === true && to.query.logout == true) {
+//   //     // return next('/');
+//   //   } else {
+//   //     return next('/');
+//   //   }
+//   // }
+
+//   // Default fallback
+//   next();
+// });
 
 
 export default router
