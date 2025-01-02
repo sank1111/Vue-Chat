@@ -7,18 +7,14 @@ export const useAuthStore = defineStore('authStore', {
     state: () => {
         return {
             isLoggedIn: !!localStorage.getItem('userInfo'),
-            user: null,
+            user: localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) : null,
             email: '',
             username: '',
             password: '',
         }
     },
-    getters: {
-        user: state => state.user
-    },
 
     actions: {
-
         //register Function
         async register() {
             const formdata = new FormData();
@@ -45,7 +41,7 @@ export const useAuthStore = defineStore('authStore', {
                     const token = response.data.token;
                     // setting the cookie 
                     document.cookie = `auth_token=${token}; path=/; max-age=3600; SameSite=None; Secure`;
-                    localStorage.setItem('userInfo', response.data.user);
+                    localStorage.setItem('userInfo', JSON.stringify(response.data.user));
 
                 })
                 .catch((error) => {

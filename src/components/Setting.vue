@@ -1,11 +1,11 @@
 <script setup>
 import { useAuthStore } from '@/stores/authStore/authStore';
-import { useindexStore } from '@/stores/indexStore';
 import { watch } from 'vue';
 import { useRouter } from 'vue-router';
 
 const router = useRouter();
 const authStore = useAuthStore();
+
 function logout() {
     authStore.logout();
     watch(() => authStore.isLoggedIn, (newValue) => {
@@ -72,6 +72,7 @@ function logout() {
                         aria-haspopup="true" aria-expanded="false">
                         <i class="bx bxs-circle text-success fs-10 align-middle"></i> Active <i
                             class="mdi mdi-chevron-down"></i>
+                        <div><b>{{ authStore.user.username }}</b></div>
                     </a>
 
                     <div class="dropdown-menu">
@@ -122,13 +123,13 @@ function logout() {
                                 <div>
                                     <label for="exampleInputPassword1" class="form-label text-muted fs-13">Name</label>
                                     <input type="text" class="form-control" id="exampleInputPassword1"
-                                        value="Dushane Daniel" placeholder="Enter name" disabled>
+                                        :value="authStore.user.username" placeholder="Enter name" disabled>
                                 </div>
 
                                 <div>
                                     <label for="exampleInputPassword1" class="form-label text-muted fs-13">Email</label>
                                     <input type="email" class="form-control" id="exampleInputPassword1"
-                                        value="dashanedaniel@vhato.com" placeholder="Enter email" disabled>
+                                        :value="authStore.user.email" placeholder="Enter email" disabled>
                                 </div>
 
                                 <div class="mt-3">
@@ -142,7 +143,7 @@ function logout() {
                                     <label for="exampleInputPassword1"
                                         class="form-label text-muted fs-13">Location</label>
                                     <input type="text" class="form-control" id="exampleInputPassword1"
-                                        value="California, USA" placeholder="Location" disabled>
+                                        value="Jhapa, Nepal" placeholder="Location" disabled>
                                 </div>
                             </div>
                         </div>
