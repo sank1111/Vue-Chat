@@ -10,6 +10,7 @@ const messageStore = useMessageStore();
 const emojis = ['😊', '😂', '😍', '😎', '❤️', '👍', '😢', '😜', '😉'];
 let constPicker = ref(false); //when click the button is triggered then this will be true.
 let inputMessage = ref('');
+const isSidebarOpen = ref(false); //For opening the profile sidebar.
 
 function toggleEmojiPicker() {
     constPicker.value = !constPicker.value;
@@ -26,6 +27,10 @@ function sendData() {
         receiverId: friendlistStore.friendInfo._id
     }
     messageStore.sendMessage(data); //Going to send message to server 
+}
+
+function toggleSidebar() {
+    isSidebarOpen.value = !isSidebarOpen.value;
 }
 
 
@@ -106,7 +111,8 @@ function sendData() {
                                     </li>
 
                                     <li class="list-inline-item d-none d-lg-inline-block me-2 ms-0">
-                                        <button type="button" class="btn nav-btn user-profile-show">
+                                        <button type="button" class="btn nav-btn user-profile-show"
+                                            @click="toggleSidebar()">
                                             <i class='bx bxs-info-circle'></i>
                                         </button>
                                     </li>
@@ -493,7 +499,7 @@ text-primary  text-primary rounded-circle">
             <!-- end chat conversation section -->
 
             <!-- start User profile detail sidebar -->
-            <div class=" user-profile-sidebar">
+            <div class=" user-profile-sidebar" v-show="isSidebarOpen">
 
                 <div class="p-3 border-bottom">
                     <div class="user-profile-img">
@@ -502,7 +508,7 @@ text-primary  text-primary rounded-circle">
                             <div class="user-chat-nav p-2">
                                 <div class="d-flex w-100">
                                     <div class="flex-grow-1">
-                                        <button type="button"
+                                        <button type="button" @click="toggleSidebar"
                                             class="btn nav-btn text-white user-profile-show d-none d-lg-block">
                                             <i class="bx bx-x"></i>
                                         </button>
@@ -920,6 +926,7 @@ text-primary  text-primary rounded-circle">
                 </div>
                 <!-- end user-profile-desc -->
             </div>
+
             <!-- end User profile detail sidebar -->
         </div>
         <!-- end user chat content -->
