@@ -2,15 +2,14 @@
 import { useFriendStore } from '@/stores/messengerStore/friendList';
 import { onMounted, ref, watch, watchEffect } from 'vue';
 import Setting from './Setting.vue';
+import { imageUrl } from '@/utility/baseUrl';
 
 const friendStore = useFriendStore();
 
 // Fetch user data from API
 onMounted(async () => {
     await friendStore.getAllfriends();
-    // watch(() => friendStore.friends, (newFriends) => {
-    //     console.log(newFriends);
-    // })
+
 });
 
 
@@ -19,7 +18,7 @@ onMounted(async () => {
 
 // Function to generate a dummy avatar with initials
 function getDummyAvatar(friend) {
-    const initials = friend.firstName.charAt(0) + friend.lastName.charAt(0);  // Create initials from first and last name
+    const initials = friend.username;  // Create initials from first and last name
     return `https://ui-avatars.com/api/?name=${initials}&background=random&color=fff`;
 }
 
@@ -370,15 +369,16 @@ function getDummyAvatar(friend) {
                         <!-- Start chat-message-list -->
                         <h5 class="mb-3 px-4 mt-4 fs-11 text-muted text-uppercase">Friends</h5>
                         <div class="chat-container">
-                            <div v-for="friend in friendStore.friendList" :key="friend.id"
+                            <div v-for="friend in friendStore.friendList" :key="friend._id"
                                 @click="friendStore.getFriendInfo(friend)" class="chat-message-item">
+
                                 <div class="avatar">
                                     <!-- If friend has avatarUrl, show it, otherwise show a dummy avatar -->
-                                    <img :src="friend.avatarUrl || getDummyAvatar(friend)" alt="Avatar" />
+                                    <img :src="imageUrl + friend.image || getDummyAvatar(friend)" alt="Avatar" />
                                 </div>
                                 <div class="message-content">
                                     <div class="friend-name">
-                                        {{ friend.firstName }} {{ friend.lastName }}
+                                        {{ friend.username }}
                                     </div>
                                     <div class="friend-status">
                                         <span
@@ -387,6 +387,8 @@ function getDummyAvatar(friend) {
                                         </span>
                                     </div>
                                 </div>
+
+
                             </div>
                         </div>
 

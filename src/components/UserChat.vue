@@ -1,22 +1,15 @@
 <script setup>
 import { useFriendStore } from '@/stores/messengerStore/friendList';
+import { useMessageStore } from '@/stores/messengerStore/messageStore';
 import { ref, watch } from 'vue';
 
 const friendlistStore = useFriendStore();
-const friendDetails = ref({});
-
-watch(() => friendlistStore.friendDetails, (newValue) => {
-    friendDetails.value = newValue;
-}, { immediate: true }); ///it will keep watching the changes in friendDetails and when it got the value then console here 
-// click hunu jel wait garne jaba click vayo value change vayo watch le samatyo ani console vayo.(dependency change ko lagi wait garne.)
-
-
+const messageStore = useMessageStore();
 
 
 const emojis = ['😊', '😂', '😍', '😎', '❤️', '👍', '😢', '😜', '😉'];
 let constPicker = ref(false); //when click the button is triggered then this will be true.
-let selectedEmoji = ref('');//Emojies which is selected by user
-
+let inputMessage = ref('');
 
 function toggleEmojiPicker() {
     constPicker.value = !constPicker.value;
@@ -24,8 +17,18 @@ function toggleEmojiPicker() {
 
 
 function selectEmoji(emoji) {
-    selectedEmoji.value += emoji;//we will store all emojies here.
+    inputMessage.value += emoji; //Emojies are stored to the Message input Field.
 }
+
+function sendData() {
+    const data = {
+        message: inputMessage.value,
+        receiverId: friendlistStore.friendInfo._id
+    }
+    messageStore.sendMessage(data); //Going to send message to server 
+}
+
+
 
 
 </script>
@@ -34,7 +37,8 @@ function selectEmoji(emoji) {
 
         <div class="chat-content d-lg-flex">
             <!-- start chat conversation section -->
-            <div class="w-100 overflow-hidden position-relative">
+            <div v-if="Object.keys(friendlistStore.friendInfo).length > 0"
+                class="w-100 overflow-hidden position-relative">
                 <!-- conversation user -->
                 <div id="users-chat" class="position-relative">
                     <div class="py-3 user-chat-topbar">
@@ -55,10 +59,8 @@ function selectEmoji(emoji) {
                                             </div>
                                             <div class="flex-grow-1 overflow-hidden">
                                                 <h6 class="text-truncate mb-0 fs-18"><a href="#"
-                                                        class="user-profile-show text-reset">{{ friendDetails.firstName
-                                                            +
-                                                            ' '
-                                                        }}{{ friendDetails.lastName }}</a></h6>
+                                                        class="user-profile-show text-reset">{{
+                                                            friendlistStore.friendInfo.username }}</a></h6>
                                                 <p class="text-truncate text-muted mb-0"><small>Online</small></p>
                                             </div>
                                         </div>
@@ -294,7 +296,7 @@ function selectEmoji(emoji) {
                                         <div class="chat-input-feedback">
                                             Please Enter a Message
                                         </div>
-                                        <input autocomplete="off" type="text" v-model="selectedEmoji"
+                                        <input autocomplete="off" type="text" v-model="inputMessage"
                                             class="form-control  bg-light border-0 chat-input" autofocus id="chat-input"
                                             placeholder="Type your message...">
                                         <div class="chat-input-typing">
@@ -323,7 +325,7 @@ function selectEmoji(emoji) {
                                             </button>
                                         </div>
                                         <div class="links-list-item">
-                                            <button type="submit"
+                                            <button type="submit" @click.prevent="sendData()"
                                                 class="btn btn-primary btn-lg chat-send waves-effect waves-light"
                                                 data-bs-toggle="collapse" data-bs-target=".chat-input-collapse1.show">
                                                 <i class="bx bxs-send align-middle" id="submit-btn"></i>
@@ -469,10 +471,29 @@ text-primary  text-primary rounded-circle">
                 </div>
                 <!-- end chat input section -->
             </div>
+            <div v-else>
+                <div class="center-message" :style="{
+                    marginLeft: '5%',
+                    marginTop: '34%',
+                    transform: 'translate(-50%, -50%)',
+                    fontSize: '1.5rem',
+                    fontFamily: 'Arial, sans-serif',
+                    color: '#333',
+                    textAlign: 'center',
+                    padding: '10px 20px',
+                    background: 'rgba(255, 255, 255, 0.8)',
+                    borderRadius: '8px',
+                    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+                    width: 'auto',
+                    maxWidth: '90%'
+                }">
+                    Select a chat to start a conversation.
+                </div>
+            </div>
             <!-- end chat conversation section -->
 
             <!-- start User profile detail sidebar -->
-            <div class="user-profile-sidebar">
+            <div class=" user-profile-sidebar">
 
                 <div class="p-3 border-bottom">
                     <div class="user-profile-img">
@@ -916,5 +937,36 @@ text-primary  text-primary rounded-circle">
     left: 50%;
     transform: translateX(-50%);
     margin-bottom: 10px;
+}
+
+.center-message {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.5rem;
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    text-align: center;
+    padding: 10px 20px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: auto;
+    max-width: 90%;
+}
+
+@media (max-width: 768px) {
+    .center-message {
+        font-size: 1.2rem;
+        padding: 8px 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .center-message {
+        font-size: 1rem;
+        padding: 6px 10px;
+    }
 }
 </style>

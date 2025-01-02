@@ -21,8 +21,7 @@ export const useFriendStore = defineStore('friendstore', {
                 api.defaults.withCredentials = true;
                 await api.get('/get-friends')
                     .then(response => {
-                        this.friends = response.data.users;
-                        console.log(this.friends);
+                        this.friends = response.data.friends;
                     }).catch(error => {
                         console.error('Error fetching friends:', error);
                     })
