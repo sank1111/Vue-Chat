@@ -548,7 +548,8 @@ text-primary  text-primary rounded-circle">
                                 </div>
                             </div>
                             <div class="mt-auto p-3">
-                                <h5 class="user-name mb-0 text-truncate">Victoria Lane</h5>
+                                <!-- Current User -->
+                                <h5 class="user-name mb-0 text-truncate">{{ friendlistStore.friendInfo.username }}</h5>
                                 <p class="fs-14 text-truncate user-profile-status mt-1 mb-0"><i
                                         class="bx bxs-circle fs-10 text-success me-1 ms-0"></i>
                                     Online</p>
@@ -621,7 +622,7 @@ text-primary  text-primary rounded-circle">
                                 <i class="ri-user-line align-middle fs-15 text-muted"></i>
                             </div>
                             <div class="flex-grow-1 ms-3">
-                                <h5 class="fs-14 text-truncate mb-0"> Victoria Lane</h5>
+                                <h5 class="fs-14 text-truncate mb-0"> {{ friendlistStore.friendInfo.username }}</h5>
                             </div>
                         </div>
 
@@ -630,25 +631,25 @@ text-primary  text-primary rounded-circle">
                                 <i class="ri-mail-line align-middle fs-15 text-muted"></i>
                             </div>
                             <div class="flex-grow-1 ms-3">
-                                <h5 class="fs-14 text-truncate mb-0">bellacote@vhato.com</h5>
+                                <h5 class="fs-14 text-truncate mb-0">{{ friendlistStore.friendInfo.email }}</h5>
                             </div>
                         </div>
 
-                        <div class="d-flex align-items-center mt-3">
+                        <div class="d-flex align-items-center mt-3" v-if="friendlistStore.friendInfo.phone">
                             <div class="flex-shrink-0">
                                 <i class="ri-phone-line align-middle fs-15 text-muted"></i>
                             </div>
                             <div class="flex-grow-1 ms-3">
-                                <h5 class="fs-14 text-truncate mb-0">+(345) 3216 48751</h5>
+                                <h5 class="fs-14 text-truncate mb-0">{{ friendlistStore.friendInfo.phone }}</h5>
                             </div>
                         </div>
 
                         <div class="d-flex align-items-center mt-3">
                             <div class="flex-shrink-0">
-                                <i class="ri-mail-line align-middle fs-15 text-muted"></i>
+                                <i class="ri-map-pin-line align-middle fs-15 text-muted"></i>
                             </div>
                             <div class="flex-grow-1 ms-3">
-                                <h5 class="fs-14 text-truncate mb-0">California, USA</h5>
+                                <h5 class="fs-14 text-truncate mb-0">Nepal</h5>
                             </div>
                         </div>
                     </div>
