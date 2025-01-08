@@ -1433,7 +1433,6 @@ watch(() => indexStore.isAuthenticated, (newValue) => {
     </div>
   </div>
 
-  <!-- Mirrored from themesdesign.in/vhato/layouts/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 25 Dec 2024 07:20:08 GMT -->
 
 
 </template>

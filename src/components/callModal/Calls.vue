@@ -1,7 +1,10 @@
 <script setup>
+import { useAuthStore } from '@/stores/authStore/authStore';
 import { useFriendStore } from '@/stores/messengerStore/friendList';
+import { imageUrl } from '@/utility/baseUrl';
 
 const friendStore = useFriendStore();
+const authStore = useAuthStore();
 </script>
 <template>
     <!-- audiocall Modal -->
@@ -12,7 +15,8 @@ const friendStore = useFriendStore();
                     <div class="text-center p-4 pb-0">
 
                         <div class="avatar-xl mx-auto mb-4">
-                            <img src="/assets/images/users/avatar-7.jpg" alt="" class="img-thumbnail rounded-circle">
+                            <img :src="imageUrl + friendStore.friendDetails.image" alt=""
+                                class="img-thumbnail rounded-circle">
                         </div>
                         <div>
                             <h5 class="fs-22 text-truncate mb-0">{{ friendStore.friendInfo.username }}</h5>
@@ -83,11 +87,10 @@ const friendStore = useFriendStore();
                         <span class="badge text-white fs-12">05:27</span>
                     </div>
 
-                    <img src="/assets/images/users/avatar-2.jpg" alt="" class="videocallModal-bg">
+                    <img :src="imageUrl + friendStore.friendInfo.image" alt="" class="videocallModal-bg">
 
                     <div>
-                        <img src="/assets/images/users/avatar-1.jpg" alt=""
-                            class="avatar-lg video-call-profile rounded">
+                        <img :src="imageUrl + authStore.user.image" alt="" class="avatar-lg video-call-profile rounded">
                     </div>
 
                     <div class="position-absolute start-0 end-0 bottom-0">

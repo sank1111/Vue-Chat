@@ -1,6 +1,7 @@
 <script setup>
 import { useFriendStore } from '@/stores/messengerStore/friendList';
 import { useMessageStore } from '@/stores/messengerStore/messageStore';
+import { baseUrl, imageUrl } from '@/utility/baseUrl';
 import { ref, watch } from 'vue';
 
 const friendlistStore = useFriendStore();
@@ -58,7 +59,7 @@ function toggleSidebar() {
                                         <div class="d-flex align-items-center">
                                             <div
                                                 class="flex-shrink-0 chat-user-img online user-own-img align-self-center me-3 ms-0">
-                                                <img src="/assets/images/users/avatar-2.jpg"
+                                                <img :src="imageUrl + friendlistStore.friendInfo.image"
                                                     class="rounded-circle avatar-sm" alt="">
                                                 <span class="user-status"></span>
                                             </div>
@@ -500,10 +501,9 @@ text-primary  text-primary rounded-circle">
 
             <!-- start User profile detail sidebar -->
             <div class=" user-profile-sidebar" v-show="isSidebarOpen">
-
                 <div class="p-3 border-bottom">
                     <div class="user-profile-img">
-                        <img src="/assets/images/users/avatar-2.jpg" class="profile-img rounded" alt="">
+                        <img :src="imageUrl + friendlistStore.friendInfo.image" class="profile-img rounded" alt="">
                         <div class="overlay-content rounded">
                             <div class="user-chat-nav p-2">
                                 <div class="d-flex w-100">
