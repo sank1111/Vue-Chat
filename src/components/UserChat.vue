@@ -155,96 +155,91 @@ function toggleSidebar() {
 
                     <!-- start chat conversation -->
 
-                    <div class="chat-conversation p-3 p-lg-4 " id="chat-conversation" data-simplebar>
+                    <div class="chat-conversation p-3 p-lg-4" id="chat-conversation" data-simplebar>
                         <ul class="list-unstyled chat-conversation-list" id="users-conversation">
+                            <!-- Chat message from User 1 (Left aligned) -->
+                            <li class="chat-message left">
+                                <div class="chat-message-content">
+                                    <div class="chat-message-user">
+                                        <span class="user-name">Astika Gurung</span>
+                                        <small class="message-time">10:00 AM</small>
+                                    </div>
+                                    <div class="message-text">
+                                        Hey! How's everything going with the new design project?
+                                    </div>
+                                </div>
+                            </li>
+
+                            <!-- Chat message from User 2 (Right aligned) -->
+                            <li class="chat-message right">
+                                <div class="chat-message-content">
+                                    <div class="chat-message-user">
+                                        <span class="user-name">Avinav Bhatta</span>
+                                        <small class="message-time">10:02 AM</small>
+                                    </div>
+                                    <div class="message-text">
+                                        It's going great! Just finished the initial prototype. I'll send it to you
+                                        shortly.
+                                    </div>
+                                </div>
+                            </li>
+
+                            <!-- Chat message from User 1 (Left aligned) -->
+                            <li class="chat-message left">
+                                <div class="chat-message-content">
+                                    <div class="chat-message-user">
+                                        <span class="user-name">Astika Gurung</span>
+                                        <small class="message-time">10:05 AM</small>
+                                    </div>
+                                    <div class="message-text">
+                                        Awesome! Can you also add the branding elements as discussed?
+                                    </div>
+                                </div>
+                            </li>
+
+                            <!-- Chat message from User 2 (Right aligned) -->
+                            <li class="chat-message right">
+                                <div class="chat-message-content">
+                                    <div class="chat-message-user">
+                                        <span class="user-name">Avinav Bhatta</span>
+                                        <small class="message-time">10:07 AM</small>
+                                    </div>
+                                    <div class="message-text">
+                                        Sure! I'll make those changes. Expect it in 30 minutes.
+                                    </div>
+                                </div>
+                            </li>
+
+                            <!-- Chat message from User 1 (Left aligned) -->
+                            <li class="chat-message left">
+                                <div class="chat-message-content">
+                                    <div class="chat-message-user">
+                                        <span class="user-name">Astika Gurung</span>
+                                        <small class="message-time">10:10 AM</small>
+                                    </div>
+                                    <div class="message-text">
+                                        Great! Let me know once it's ready. I'll review it then.
+                                    </div>
+                                </div>
+                            </li>
+
+                            <!-- Chat message from User 2 (Right aligned) -->
+                            <li class="chat-message right">
+                                <div class="chat-message-content">
+                                    <div class="chat-message-user">
+                                        <span class="user-name">Avinav Bhatta</span>
+                                        <small class="message-time">10:12 AM</small>
+                                    </div>
+                                    <div class="message-text">
+                                        Done! Just sent you the link. Check it out and let me know if any tweaks are
+                                        needed.
+                                    </div>
+                                </div>
+                            </li>
                         </ul>
-
-                        <!-- <div class="chat-list left" id="10">
-                      <div class="conversation-list">
-                          <div class="chat-avatar">
-                              <img src="/assets/images/users/avatar-2.jpg" alt="">
-                          </div>
-                          <div class="user-chat-content">
-                              <div class="ctext-wrap">
-                                  <div class="message-img mb-0">
-                                      <div class="message-img-list">
-                                          <div>
-                                              <iframe src="https://www.youtube.com/embed/PHcgN1GTjdU" title="YouTube video"
-                                                  class="w-100 rounded" autoplay allowfullscreen></iframe>
-                                          </div>
-
-                                          <div class="message-img-link">
-                                              <ul class="list-inline mb-0">
-                                                  <li class="list-inline-item dropdown">
-                                                      <a class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                                                          aria-haspopup="true" aria-expanded="false">
-                                                          <i class="bx bx-dots-horizontal-rounded"></i>
-                                                      </a>
-                                                      <div class="dropdown-menu">
-                                                          <a class="dropdown-item d-flex align-items-center justify-content-between"
-                                                              href="/assets/images/small/img-1.jpg" download="">
-                                                              Download <i class="bx bx-download ms-2 text-muted"></i>
-                                                          </a>
-                                                          <a class="dropdown-item d-flex align-items-center justify-content-between"
-                                                              href="#" data-bs-toggle="collapse" data-bs-target=".replyCollapse">
-                                                              Reply <i class="bx bx-share ms-2 text-muted"></i>
-                                                          </a>
-                                                          <a class="dropdown-item d-flex align-items-center justify-content-between"
-                                                              href="#" data-bs-toggle="modal" data-bs-target=".forwardModal">
-                                                              Forward <i class="bx bx-share-alt ms-2 text-muted"></i>
-                                                          </a>
-                                                          <a class="dropdown-item d-flex align-items-center justify-content-between"
-                                                              href="#">
-                                                              Bookmark <i class="bx bx-bookmarks text-muted ms-2"></i>
-                                                          </a>
-                                                          <a class="dropdown-item d-flex align-items-center justify-content-between delete-image"
-                                                              href="#">
-                                                              Delete <i class="bx bx-trash ms-2 text-muted"></i>
-                                                          </a>
-                                                      </div>
-                                                  </li>
-                                              </ul>
-                                          </div>
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="conversation-name">
-                                  <small class="text-muted time">11:45 am</small>
-                                  <span class="text-success check-message-icon"><i class="bx bx-check-double"></i></span>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-
-                  <div class="chat-list left" id="11">
-                      <div class="conversation-list">
-                          <div class="chat-avatar">
-                              <img src="/assets/images/users/avatar-2.jpg" alt="">
-                          </div>
-                          <div class="user-chat-content">
-                              <div class="ctext-wrap">
-                                  <div class="message-img mb-0">
-                                      <div class="message-img-list">
-                                          <audio controls>
-                                              <source src="http://w3codegenerator.com/audio/audio.mp3" type="audio/mpeg">
-                                          </audio>
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="conversation-name">
-                                  <small class="text-muted time">11:45 am</small>
-                                  <span class="text-success check-message-icon"><i class="bx bx-check-double"></i></span>
-                              </div>
-                          </div>
-                      </div>
-                  </div> -->
                     </div>
 
-                    <!-- <div class="alert alert-warning alert-dismissible copyclipboard-alert px-4 fade show" id="copyClipBoard"
-          role="alert">
-          Message copied
-        </div> -->
-                    <!-- end chat conversation end -->
+
                 </div>
 
 
@@ -976,5 +971,86 @@ text-primary  text-primary rounded-circle">
         font-size: 1rem;
         padding: 6px 10px;
     }
+}
+
+.chat-message {
+    margin-bottom: 15px;
+}
+
+.chat-message.left {
+    text-align: left;
+}
+
+.chat-message.right {
+    text-align: right;
+}
+
+.chat-message-content {
+    display: inline-block;
+    max-width: 75%;
+    border-radius: 15px;
+    padding: 10px;
+    background-color: #f1f1f1;
+    position: relative;
+}
+
+.chat-message.left .chat-message-content {
+    background-color: #e6f7ff;
+    border-bottom-left-radius: 0;
+    border-top-right-radius: 15px;
+}
+
+.chat-message.right .chat-message-content {
+    background-color: #e6ffe6;
+    border-bottom-right-radius: 0;
+    border-top-left-radius: 15px;
+}
+
+.chat-message-user {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.user-name {
+    font-weight: bold;
+    color: #333;
+}
+
+.message-time {
+    font-size: 0.85rem;
+    color: #888;
+}
+
+.message-text {
+    font-size: 1rem;
+    color: #333;
+}
+
+.chat-conversation-list {
+    padding: 0;
+    list-style-type: none;
+}
+
+#chat-conversation[data-simplebar] {
+    scrollbar-width: thin;
+    scrollbar-color: #888 #f1f1f1;
+}
+
+#chat-conversation[data-simplebar]::-webkit-scrollbar {
+    width: 8px;
+}
+
+#chat-conversation[data-simplebar]::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+#chat-conversation[data-simplebar]::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+
+#chat-conversation[data-simplebar]::-webkit-scrollbar-thumb:hover {
+    background: #555;
 }
 </style>
